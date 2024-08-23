@@ -77,7 +77,7 @@ router.post('/v1/score_board_post', async function (req, res, next) {
   try {
     await prisma.users.create({
       data:{
-        username,
+        name: username,
         time: Number(time)
       }
     })

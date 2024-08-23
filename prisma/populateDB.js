@@ -5,7 +5,7 @@ const prisma = new PrismaClient()
 async function main() {
     console.log("starting to populateDB ...")
 
-    const user = prisma.users.create({
+    const user = await prisma.users.createMany({
         data:[
             {
                 name : "admin1",

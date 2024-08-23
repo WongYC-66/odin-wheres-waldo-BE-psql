@@ -17,7 +17,7 @@ POST http://localhost:3000/v1/score_board_post
 content-type: application/json
 
 {
-    "name": "sample",
+    "username": "sample",
     "time": "5"
 }
 
