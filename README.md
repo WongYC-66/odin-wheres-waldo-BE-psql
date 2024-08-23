@@ -1,5 +1,5 @@
-# odin-wheres-waldo-BE
-A simple BackEnd build with NodeJS/Express with mongoDB for FE.
+# odin-wheres-waldo-BE-psql 
+A simple BackEnd build with NodeJS/Express with postgreSQL(prisma) for FE.
 
 1. create postgreSQL database
 2. create .env file, add:
@@ -15,7 +15,7 @@ FE demo (built with react/vite/bootstrap) : https://wongyc-66.github.io/odin-whe
 
 FE (source) :  https://github.com/WongYC-66/odin-wheres-waldo-FE-psql
 
-BE demo (built with nodeJS/express/mongoDB) : https://odin-wheres-waldo-be-psql.adaptable.app/
+BE demo (built with nodeJS/express/postgreSQL) : https://odin-wheres-waldo-be-psql.adaptable.app/
 
 BE (source) : https://github.com/WongYC-66/odin-wheres-waldo-BE-psql
 #
