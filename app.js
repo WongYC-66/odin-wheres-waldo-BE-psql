@@ -6,16 +6,15 @@ var logger = require('morgan');
 const mongoose = require('mongoose');
 var cors = require('cors')
 
+
+
 if(process.NODE_ENV != "production")
   require('dotenv').config()
 
 var indexRouter = require('./routes/index');
 
-main().catch(err => console.log(err));
-
-async function main() {
-  await mongoose.connect(process.env.MONGODB_URL);
-}
+const { PrismaClient } = require('@prisma/client')
+const prisma = new PrismaClient()
 
 var app = express();
 
@@ -38,10 +37,13 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(async function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // 
+  await prisma.$disconnect()
 
   // render the error page
   res.status(err.status || 500);

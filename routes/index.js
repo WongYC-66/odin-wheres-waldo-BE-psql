@@ -1,7 +1,8 @@
+const { PrismaClient } = require('@prisma/client')
 var express = require('express');
 var router = express.Router();
 
-const User = require('../model/user')
+const prisma = new PrismaClient()
 
 //  API point
 // /v1/success_guess_post 
@@ -53,9 +54,9 @@ router.post('/v1/success_guess_post', function (req, res, next) {
 router.get('/v1/score_board_get', async function (req, res, next) {
 
   try {
-    let users = await User.find()
-      .sort({ time: 1 })
-      .exec()
+    const users = await prisma.users.findMany({
+      orderBy: {time:'asc'}
+    })
       
     res.json({
       "users": users
@@ -74,10 +75,16 @@ router.post('/v1/score_board_post', async function (req, res, next) {
   let { username, time } = jsonData
 
   try {
-    let newUser = new User({ name: username, time })
-    await newUser.save()
+    await prisma.users.create({
+      data:{
+        username,
+        time: Number(time)
+      }
+    })
+
     res.json({ 'msg': 'success' });
-  } catch {
+  } catch (e){
+    console.error("submission error : ", e)
     res.json({ 'msg': 'submission failed' });
   }
 
